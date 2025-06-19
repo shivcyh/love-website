@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our 18th Monthsary</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffe0ec, #ffe6f0, #fef6ff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 2rem;
+      color: #cc3366;
+      text-align: center;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 1rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      text-align: center;
+    }
+
+    .navbar a {
+      margin: 0 1rem;
+      color: #cc3366;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .navbar a:hover {
+      background: #cc3366;
+      color: white;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      color: #ff4081;
+      text-shadow: 1px 1px 3px #ffc1d9;
+      margin-top: 80px; /* Prevent content from being hidden behind the navbar */
+    }
+
+    .password-container {
+      margin-top: 2rem;
+    }
+
+    .display {
+      padding: 0.5rem;
+      border: 2px solid #cc3366;
+      border-radius: 5px;
+      font-size: 1.5rem;
+      width: 200px;
+      text-align: center;
+      margin-bottom: 1rem;
+      background: #fff;
+      transition: border-color 0.3s;
+    }
+
+    .display:focus {
+      border-color: #ff4081;
+      outline: none;
+    }
+
+    .button {
+      padding: 1rem;
+      border: 2px solid #cc3366;
+      border-radius: 5px;
+      font-size: 1.5rem;
+      width: 50px;
+      margin: 5px;
+      cursor: pointer;
+      background: #fff;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .button:hover {
+      background: #cc3366;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    .button.highlight {
+      background: #cc3366; /* Highlight color */
+      color: white;
+    }
+
+    .submit-button {
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 30px;
+      background: #cc3366;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+      width: 100%; /* Make the button full width */
+    }
+
+    .submit-button:hover {
+      background: #ff4081;
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(204, 51, 102, 0.3);
+    }
+
+    .message {
+      display: none; /* Initially hidden */
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      background: rgba(255, 240, 245, 0.9);
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(204, 51, 102, 0.2);
+      width: 90%;
+      max-width: 400px;
+      opacity: 0; /* Start hidden */
+      transition: opacity 0.5s ease-in-out; /* Smooth transition for opacity */
+    }
+
+    .message.show {
+      display: block; /* Show the message */
+      opacity: 1; /* Fade in */
+    }
+
+    .calculator {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 1rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .display {
+        width: 150px;
+      }
+
+      .button {
+        width: 40px;
+        font-size: 1.2rem;
+      }
+
+      .submit-button {
+        padding: 0.5rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="OURLOVE.html">Back to Home</a>
+  </div>
+
+  <h1>Happy 18th Monthsary 💖</h1>
+
+  <div class="password-container" id="passwordContainer">
+    <input type="text" id="display" class="display" placeholder="Enter Password" readonly />
+    <div class="calculator">
+      <button class="button" onclick="appendNumber(1)">1</button>
+      <button class="button" onclick="appendNumber(2)">2</button>
+      <button class="button" onclick="appendNumber(3)">3</button>
+      <button class="button" onclick="appendNumber(4)">4</button>
+      <button class="button" onclick="appendNumber(5)">5</button>
+      <button class="button" onclick="appendNumber(6)">6</button>
+      <button class="button" onclick="appendNumber(7)">7</button>
+      <button class="button" onclick="appendNumber(8)">8</button>
+      <button class="button" onclick="appendNumber(9)">9</button>
+      <button class="button" onclick="clearDisplay()">C</button>
+      <button class="button" onclick="appendNumber(0)">0</button>
+      <button class="submit-button" onclick="checkPassword()">Enter</button>
+    </div>
+  </div>
+
+  <div id="message" class="message">
+    <h2>My Dearest Love,</h2>
+    <p>
+      Happy monthsary baby,<br>
+      ang bilis ng panahon, parang kailan lang kaka isang taon pa lang natin ah,<br>
+      ngayon nakakakalahati na tayo ng taon, 6 months pa baby,<br>
+      malapit na tayo mag 2nd anniversary. I'm very happy and also grateful<br>
+      kasi you're always there by my side, you've always been there for me<br>
+      through the ups and down, you've become my partner sa loob ng 18 months na yun,<br>
+      hindi lang sa love natin pati na rin sa buhay natin tsaka mga problemang<br>
+      kinakaharap nang magkasama.<br><br>
+
+      I'm so lucky to have a girl such like you in my life,<br>
+      naging partner kita sa lahat, sa love, sa life, sa mga problema,<br>
+      sa tahimik na araw, at sa mundong magulo, maingay you’ve been my peace,<br>
+      my comfort, and my home.<br><br>
+
+      Anim na buwan na lang, baby. Malapit na tayong mag 2nd anniversary<br>
+      and what makes me happiest is that we’re still here, still choosing each other,<br>
+      still building something beautiful. Kahit anong dumaan, we held on.<br>
+      And I’m so proud of us for being so strong especially sa mga oras o pagkakataon<br>
+      na hindi tayo makaintindihan, nag-aaway tayo and i think that's part of the process din<br>
+      kasi hindi tayo makakarating sa kung nasaan tayo ngayon kung hindi natin naranasan<br>
+      yung mga hirap na pinag daanan natin, hindi tayo magiging matibay nang ganito<br>
+      kung sumuko na tayo doon pa lang, I'm sooo proud of us.
+    </p>
+    <p>Forever yours,</p>
+    <p>[Jm]</p>
+  </div>
+
+  <script>
+    const correctPassword = "12202023"; 
+    const display = document.getElementById('display');
+    const passwordContainer = document.getElementById('passwordContainer');
+
+    function appendNumber(number) {
+      display.value += number; 
+    }
+
+    function clearDisplay() {
+      display.value = ''; 
+    }
+
+    function checkPassword() {
+      const passwordInput = display.value;
+      const messageDiv = document.getElementById('message');
+
+      if (passwordInput === correctPassword) {
+        passwordContainer.style.display = 'none'; 
+        messageDiv.classList.add('show'); 
+        setTimeout(() => {
+          messageDiv.style.display = 'block'; 
+        }, 0); 
+      } else {
+        alert('Incorrect password. Please try again.');
+        clearDisplay(); 
+      }
+    }
+
+    document.addEventListener('keydown', function(event) {
+      const key = event.key;
+      if (key >= 0 && key <= 9) {
+        appendNumber(key); 
+        highlightButton(key); 
+      } else if (key === 'Enter') {
+        checkPassword();
+      } else if (key === 'Backspace') {
+        clearDisplay(); 
+      }
+    });
+
+    function highlightButton(key) {
+      const buttonIndex = key === '0' ? 9 : key - 1; 
+      const button = document.querySelectorAll('.button')[buttonIndex];
+      if (button) {
+        button.classList.add('highlight'); 
+        setTimeout(() => {
+          button.classList.remove('highlight'); 
+        }, 200); 
+      }
+    }
+  </script>
+</body>
+</html>
+
+

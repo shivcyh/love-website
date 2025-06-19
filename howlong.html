@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Timer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffe0ec, #ffe6f0, #fef6ff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      padding: 1rem;
+      color: #cc3366;
+      text-align: center;
+      animation: fadeIn 2s ease;
+      padding-top: 80px; /* Prevent content from being hidden behind the navbar */
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      color: #ff4081;
+      text-shadow: 1px 1px 3px #ffc1d9;
+    }
+
+    #counter, #countdown {
+      font-size: 1.2rem;
+      background: rgba(255, 240, 245, 0.9);
+      padding: 1.2rem 2rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(204, 51, 102, 0.2);
+      max-width: 90%;
+      line-height: 1.6;
+      transition: all 0.3s ease;
+      margin: 1rem 0; /* Add margin for spacing */
+    }
+
+    #counter:hover, #countdown:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 30px rgba(204, 51, 102, 0.3);
+    }
+
+    a {
+      margin-top: 2rem;
+      display: inline-block;
+      font-size: 1rem;
+      color: #cc3366;
+      text-decoration: none;
+      border: 2px solid #cc3366;
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    a:hover {
+      background: #cc3366;
+      color: white;
+    }
+
+    /* Fixed Navigation Bar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 1rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      text-align: center;
+    }
+
+    .navbar a {
+      margin: 0 1rem;
+      color: #cc3366;
+      font-weight: bold;
+    }
+
+    .navbar a:hover {
+      color: #ff4081;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="OURLOVE.html">Back to Home</a>
+  </div>
+
+  <h1>Our Love Timer 💞</h1>
+  <div id="counter">Loading your love story...</div>
+  <div id="countdown">Loading next anniversary countdown...</div>
+
+  <script>
+    const counter = document.getElementById('counter');
+    const countdown = document.getElementById('countdown');
+    const startDate = new Date('2023-12-20T00:00:00');
+    const nextAnniversary = new Date('2025-12-20T00:00:00');
+
+    function updateCounter() {
+      const now = new Date();
+      let diff = now - startDate;
+
+      const seconds = Math.floor(diff / 1000) % 60;
+      const minutes = Math.floor(diff / (1000 * 60)) % 60;
+      const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+      const daysTotal = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+      const years = Math.floor(daysTotal / 365);
+      const months = Math.floor((daysTotal % 365) / 30);
+      const days = daysTotal % 30;
+
+      counter.innerHTML = `
+        We've been in love for<br>
+        <strong>${years}</strong> year${years !== 1 ? 's' : ''}, 
+        <strong>${months}</strong> month${months !== 1 ? 's' : ''}, 
+        <strong>${days}</strong> day${days !== 1 ? 's' : ''},<br>
+        <strong>${hours}</strong> hour${hours !== 1 ? 's' : ''}, 
+        <strong>${minutes}</strong> minute${minutes !== 1 ? 's' : ''}, 
+        and <strong>${seconds}</strong> second${seconds !== 1 ? 's' : ''}.
+      `;
+    }
+
+    function updateCountdown() {
+      const now = new Date();
+      let diff = nextAnniversary - now;
+
+      const seconds = Math.floor(diff / 1000) % 60;
+      const minutes = Math.floor(diff / (1000 * 60)) % 60;
+      const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+      if (diff < 0) {
+        countdown.innerHTML = "<strong>Your next anniversary has passed!</strong>";
+      } else {
+        countdown.innerHTML = `
+          Time until our next anniversary:<br>
+          <strong>${days}</strong> day${days !== 1 ? 's' : ''}, 
+          <strong>${hours}</strong> hour${hours !== 1 ? 's' : ''}, 
+          <strong>${minutes}</strong> minute${minutes !== 1 ? 's' : ''}, 
+          and <strong>${seconds}</strong> second${seconds !== 1 ? 's' : ''}.
+        `;
+      }
+    }
+
+    updateCounter();
+    updateCountdown();
+    setInterval(updateCounter, 1000);
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
+

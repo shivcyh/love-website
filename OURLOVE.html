@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Love Story</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth; /* Enable smooth scrolling */
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #fefefe, #f0e5ff);
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+      color: #333;
+      line-height: 1.7;
+      padding-top: 100px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      color: #cc3366;
+      font-family: 'Pacifico', cursive;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      margin-top: 2.5rem;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 0.5rem;
+      color: #444;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 1rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      text-align: center;
+    }
+
+    .navbar a {
+      margin: 0 1rem;
+      color: #cc3366;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      transition: background 0.3s, color 0.3s;
+      display: inline-block;
+    }
+
+    .navbar a:hover {
+      background: #cc3366;
+      color: white;
+    }
+
+    a.button {
+      display: inline-block;
+      margin: 0.5rem 0;
+      color: #0077cc;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0.6rem 1.2rem;
+      border: 2px solid #0077cc;
+      border-radius: 50px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    a.button:hover {
+      background: #0077cc;
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+
+    .about-text {
+      white-space: pre-wrap;
+      margin-top: 1rem;
+      text-align: justify;
+      background-color: #fafafa;
+      padding: 1rem;
+      border-left: 4px solid #cc3366;
+      border-radius: 5px;
+      position: relative;
+      z-index: 1;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul li::before {
+      content: "💖 ";
+    }
+
+    .our-photo {
+      width: 90%;
+      max-width: 400px;
+      display: block;
+      margin: 1.5rem auto;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      border: 4px dashed #ffc0cb;
+      background: url('https://pngimg.com/uploads/hello_kitty/hello_kitty_PNG47.png') no-repeat bottom right;
+      background-size: 60px;
+      padding: 10px;
+      background-color: #fff0f5;
+      position: relative;
+      z-index: 1;
+    }
+
+    #counter {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      text-align: center;
+      color: #cc3366;
+      font-weight: bold;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #cc3366;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s;
+    }
+
+    .back-to-top:hover {
+      background-color: #ff69b4;
+    }
+
+    .music-player {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      background: linear-gradient(135deg, #ffcccb, #ff69b4);
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      border: 4px solid #ff69b4;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .album-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    .album-art {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      border: 6px solid #ffc0cb;
+      transition: transform 0.3s ease;
+    }
+
+    .album-art:hover {
+      transform: scale(1.05);
+    }
+
+    .spinning {
+      animation: spin 10s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .music-notes {
+      position: absolute;
+      top: -10px;
+      right: -20px;
+      font-size: 1.5rem;
+      animation: floatNotes 2s infinite ease-in-out alternate;
+    }
+
+    @keyframes floatNotes {
+      from { transform: translateY(0); opacity: 1; }
+      to   { transform: translateY(-10px); opacity: 0.7; }
+    }
+
+    .song-title {
+      font-size: 0.95rem;
+      color: #cc3366;
+      font-weight: bold;
+      margin-top: 0.6rem;
+    }
+
+    audio {
+      margin-top: 1rem;
+      width: 90%;
+      max-width: 300px;
+      border-radius: 5px;
+      border: 2px solid #cc3366;
+      background: #f9f9f9;
+      padding: 5px;
+      outline: none;
+    }
+
+    audio::-webkit-media-controls-panel {
+      background-color: #ffcccb;
+    }
+
+    audio::-webkit-media-controls-play-button {
+      background-color: #cc3366;
+      border-radius: 50%;
+    }
+
+    audio::-webkit-media-controls-volume-slider {
+      background-color: #ff69b4;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="#about" class="button">About Us</a>
+    <a href="#important-dates" class="button">Important Dates</a>
+    <a href="#navigate" class="button">Navigate</a>
+  </div>
+
+  <div class="music-player">
+    <div class="album-wrapper">
+      <img src="peakpx.jpg" alt="Album Cover" class="album-art spinning" />
+      <div class="music-notes">
+        <span>🎵</span><br><span>🎶</span><br><span>🎼</span>
+      </div>
+    </div>
+    <audio controls autoplay loop>
+      <source src="About You.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <p class="song-title">🎧 Now Playing: <span>About You</span></p>
+  </div>
+
+  <header>
+    <h1>This is Our Story</h1>
+    <p>A digital scrapbook of us ✨</p>
+  </header> 
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p class="about-text">
+      <img src="us.JPG" alt="Us Together" class="our-photo" /> 
+      
+      Our story began unexpectedly way back in Grade 4. I still remember the first time I saw her, sitting in front of the class, writing on the board from her seat. In that quiet moment, something about her caught my attention. She was beautiful. I wanted to talk to her, to get to know her, but I was too shy. So I admired her from a distance, carrying that silent admiration with me.
+
+      By Grade 6, we started walking home at the same time not because we planned it, but because one of my close friends happened to be friends with her. Since I was always with my friend, and she was too, we often ended up walking together. She was still as beautiful as I remembered.
+
+      Eventually, we went our separate ways after elementary. We stopped seeing each other, and the feelings faded. It was just a childhood crush… or so I thought.
+
+      High school came and then the pandemic. Everything shifted to online classes. By chance, we ended up as classmates in Grade 7 and 8, but she didn’t remember me at all.
+
+      By Grade 9, she still liked me, but I wasn’t ready to feel the same. I was still healing from a difficult past and hesitant to start something new. But I couldn't deny she was cute, really really cute. She kept chatting with me, joking around, telling stories, and always asking if we could walk home together. I kept saying no, mostly because I still preferred being with my friends, and maybe I was still guarding my heart. She told me later that she started to like me because she found my name beautiful. She messaged me often, tried to get my attention, and slowly started making her way into my everyday life.
+
+   But one day, I said yes. We went to school together, and in that simple moment, something beautiful began. It felt truly wonderful
+
+      Grade 10 came, and she asked again to walk with me. I agreed but ended up canceling because I had plans with my classmates. I felt guilty. So the next day, I made the first move and asked her to walk with me. And we did. Something felt different. I didn’t realize it right away, but I was already falling for her.
+
+ We started talking more, spending time together, and eventually, I found the courage to court her. Then, on December 20, 2023, she said yes, a moment that changed everything.
+
+Now, more than 17 months later, we're still writing our story a beautiful journey filled with laughter, love, growth, and memories that feel like home. From a quiet seat back in Grade 4 to the bond we’ve built today, ours is a story we never saw coming, but one we’ll always hold close to our hearts.
+
+She became my safe space, my constant, my best friend and every day with her feels like a page from a dream I never want to end.
+
+   
+    </p>
+    <h2 id="important-dates">Important Dates</h2>
+    <ul>
+      <li><strong>December 20, 2023:</strong> The day she said Yes! ⸜(｡˃ ᵕ ˂ )⸝♡</li>
+      <li><Strong>December 25, 2023:</Strong> Our fist Christmas together! 🎄</li>
+      <li><strong>January 10, 2024:</strong> Our first kiss! 💋 </li>
+    </ul>
+    <div id="counter"></div>
+  </section>
+
+  <section id="navigate">
+    <h2>Navigate</h2>
+    <a href="gallery.html" class="button">📸 Our Photo Gallery</a>
+    <a href="playlist.html" class="button">🎵 Our Playlist</a>
+    <a href="howlong.html" class="button">🕔 How Long We've Been Together</a>
+    <a href="Message.html" class="button">💌 Monthsary Message</a>
+    <a href="allaboutyou.html" class="button">💖 All About You</a>
+  </section>
+
+  <footer>
+    Made By JM 💖
+  </footer>
+
+  <button class="back-to-top" onclick="scrollToTop()">↑</button>
+
+  <script>
+    function calculateDuration() {
+      const startDate = new Date('2023-12-20'); 
+      const today = new Date(); 
+      const timeDiff = today - startDate;
+      const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+      document.getElementById('counter').innerText = `We've been together for ${daysDiff} days!`;
+    }
+
+    calculateDuration();
+
+    window.onscroll = function() {
+      const button = document.querySelector('.back-to-top');
+      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        button.style.display = "block";
+      } else {
+        button.style.display = "none";
+      }
+    };
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+
+
